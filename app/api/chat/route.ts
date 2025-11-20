@@ -4,15 +4,19 @@ export async function POST(request: Request) {
   try {
     const { message, leadName } = await request.json();
 
-    // Simulăm un răspuns AI (momentan)
-    const aiResponse = `🤖 Salut ${leadName}! 
+    // ✅ ENGLISH for international market
+    const aiResponse = `🤖 Hello ${leadName}! 
 
-Am văzut mesajul tău: "${message}"
+I saw your message: "${message}"
 
-Aș dori să te ajut cu informații despre serviciile noastre. Ce anume te interesează cel mai mult?
+I'd love to help you with information about our services. What specifically interests you the most?
 
-Cu stimă,
-Echipa Closemate AI`;
+I'm here to answer any questions you have and provide you with the best solutions for your needs.
+
+Looking forward to helping you!
+
+Best regards,
+The Closemate AI Team`;
 
     return NextResponse.json({ 
       success: true, 
@@ -22,7 +26,7 @@ Echipa Closemate AI`;
   } catch (error) {
     return NextResponse.json({ 
       success: false, 
-      error: 'A apărut o eroare' 
+      error: 'An error occurred' 
     }, { status: 500 });
   }
 }
