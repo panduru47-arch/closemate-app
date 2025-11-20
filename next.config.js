@@ -1,10 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
-  trailingSlash: true,
-  images: {
-    unoptimized: true
-  }
+  // ✅ ELIMINĂ "output: 'export'" pentru a permite API routes
+  // ✅ Lasă doar acest obiect gol
 }
 
 module.exports = nextConfig
