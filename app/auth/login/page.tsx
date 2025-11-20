@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { supabase } from '@/lib/supabase';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -12,12 +13,29 @@ export default function LoginPage() {
     e.preventDefault();
     setLoading(true);
     
-    // Temporar - simulăm login-ul până integrăm Supabase
-    setTimeout(() => {
-      console.log('Login attempt:', email);
-      alert('Login functionality coming soon! Supabase integration in progress...');
+    try {
+      // Login real cu Supabase
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: email,
+        password: password,
+      });
+
+      if (error) {
+        alert('Login failed: ' + error.message);
+        return;
+      }
+
+      if (data.user) {
+        // Success - redirect to dashboard
+        alert('Login successful! Welcome to Closemate AI.');
+        router.push('/dashboard');
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      alert('An error occurred during login.');
+    } finally {
       setLoading(false);
-    }, 1000);
+    }
   };
 
   return (
@@ -73,13 +91,6 @@ export default function LoginPage() {
               >
                 Sign up
               </button>
-            </p>
-          </div>
-
-          {/* Development Info */}
-          <div className="mt-6 p-4 bg-yellow-500/20 border border-yellow-500/30 rounded-lg">
-            <p className="text-yellow-200 text-sm text-center">
-              🚧 Under Development: Supabase integration in progress
             </p>
           </div>
         </div>
