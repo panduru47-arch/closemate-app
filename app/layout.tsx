@@ -1,8 +1,8 @@
 import './globals.css'
 
 export const metadata = {
-  title: 'Closemate App - AI Sales Agent',
-  description: 'Your autonomous sales assistant',
+  title: 'Closemate AI - Autonomous Sales Agent',
+  description: 'AI-powered sales assistant for real estate, clinics, IT companies, and service providers',
 }
 
 export default function RootLayout({
